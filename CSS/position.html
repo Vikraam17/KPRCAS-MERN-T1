@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 200vh;
+        }
+        .Navbar{
+            position: sticky;
+            top: 0;
+        }
+        .Relative{
+            border: 2px solid green;
+            position: relative;
+            height: 50vh;
+            margin-top: 20vh;
+        }
+        .absolute{
+            border: 2px solid red;
+            position: absolute;
+            margin: 10px;
+            margin-left: 50px;
+        }
+        .fixed{
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="Navbar">
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+                <li>Service</li>
+            </ul>
+        </nav>
+    </div>
+    <div class="Relative">
+        <h1>Relative</h1>
+        <div class="absolute">
+            <h1>Absolute</h1>
+        </div>
+    </div>
+    <div class="fixed">Fixed</div>
+</body>
+</html>
