@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    background-color: orangered;
+    padding: 20px;
+}
+.list{
+    list-style: none;
+}
+.link{
+    text-decoration: none;
+    background-color: yellow;
+    padding: 10px;
+    border-radius: 10px;
+    color: rgb(138, 3, 3);
+}
+.link:hover{
+    color: white;
+    background-color: darkgreen;
+    cursor: pointer;
+}
+
