@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const connectDB = require("./config/db")
 const todo = require('./model/todo')
+const cors = require('cors')
+
+app.use(cors())
 connectDB();
 
 app.use(express.json());
@@ -13,14 +16,30 @@ app.get('/',async (req,res)=>{
     res.send(err);
    }
 })
-app.post('/',(req,res)=>{
-    res.send("Post Route is Working!!")
+app.post('/',async(req,res)=>{
+    try{
+        const task =await todo.create(req.body);
+        res.status(201).json(task);
+    }catch(err){
+        res.status(500).json(err)
+    }
 })
-app.put('/',(req,res)=>{
-    res.send("Put Route is Working!!")
+app.put('/:id',async(req,res)=>{
+    try{
+        const updatedTodo = await todo.findByIdAndUpdate
+        (req.params.id,req.body,{new:true})
+    res.status(200).json(updatedTodo);
+    }catch(err){
+        res.status(500).json(err);
+    }
 })
-app.delete('/',(req,res)=>{
-    res.send("Delete Route is Working!!")
+app.delete('/:id', async(req,res)=>{
+   try{
+     await todo.findByIdAndDelete(req.params.id);
+     res.status(200).json({"message":"Task Deleted Successfully"})
+   }catch(err){
+    res.status(500).send(err);
+   }
 })
 app.listen(3000,()=>{
     console.log(`Server running on Port http://localhost:3000`);
