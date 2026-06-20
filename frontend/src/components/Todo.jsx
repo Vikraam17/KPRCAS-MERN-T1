@@ -5,7 +5,7 @@ const Todo = () => {
     const [task,setTask] = useState("");
     const [editing,setEditing] = useState(null)
     const fetchData = async() =>{
-        const res = await axios.get('http://localhost:3000/');
+        const res = await axios.get('https://kprcas-mern-t1.onrender.com/');
         setTodos(res.data);
     }
     useEffect(()=>{
@@ -14,35 +14,32 @@ const Todo = () => {
 
     const handleAddOrUpdate = async() =>{
         if(editing!=null){
-            await axios.put(`http://localhost:3000/${editing}`,{task})
+            await axios.put(`https://kprcas-mern-t1.onrender.com/${editing}`,{task})
         }
         else{
-            await axios.post('http://localhost:3000/',{task})
+            await axios.post('https://kprcas-mern-t1.onrender.com/',{task})
         }
         setTask("");
         setEditing(null);
-        fetchData();
     }
     const handleDelete =async (id) =>{
-        await axios.delete(`http://localhost:3000/${id}`)
-        fetchData();
+        await axios.delete(`https://kprcas-mern-t1.onrender.com/${id}`)
     }
     const handleEdit =(todo)=>{
         setTask(todo.task);
         setEditing(todo._id);
     }
     const handleToggle = async(todo)=>{
-        await axios.put(`http://localhost:3000/${todo._id}`,{
+        await axios.put(`https://kprcas-mern-t1.onrender.com/${todo._id}`,{
             completed:!todo.completed
         })
-        fetchData();
     }
   return (
     <div>
         <form>
             <label>Task : </label>
             <input type="text" value={task} onChange={(e)=>setTask(e.target.value)}/>
-            <button onClick={handleAddOrUpdate}>{editing?"Update":"Add"}</button>
+            <button onClick={()=>handleAddOrUpdate()}>{editing?"Update":"Add"}</button>
         </form>
         <ul>
             {todos.map((todo,index)=>(
